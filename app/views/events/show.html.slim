@@ -1,0 +1,21 @@
+.show-item
+  .well.event.form-horizontal
+
+    .control-group
+      label.control-label
+        | Name
+      .controls
+        .input-xlarge.uneditable-input.string.span7
+          = event.name
+    .control-group
+      label.control-label
+        | Start time
+      .controls
+        .input-xlarge.uneditable-input.datetime.span7
+          = event.start_time
+  .form-actions
+    = link_to(edit_event_path(event), class: 'btn btn-primary') do
+      i.fi-pencil
+      | Edit
+    '  or
+    = link_to 'Back', :back

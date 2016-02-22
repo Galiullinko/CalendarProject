@@ -1,0 +1,31 @@
+table.table.table-striped
+  thead
+    tr
+        th Name
+        th Start time
+        th Actions
+
+  - events.each do |event|
+    tr
+      td= event.name
+      td= event.start_time
+      td.actions
+        = link_to(event, class: 'btn') do
+          i.fi-eye
+          |  Show
+        = link_to(edit_event_path(event), class: 'btn') do
+          i.fi-pencil
+          |  Edit
+        = link_to(event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }) do
+          i.fi-trash
+          |  Delete
+
+.paginator
+  = paginate(events)
+
+br
+= link_to new_event_path, class: 'btn btn-primary' do
+  i.fi-plus
+  |  New Event
+
+
