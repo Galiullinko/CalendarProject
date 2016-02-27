@@ -3,7 +3,8 @@
     = month_calendar events: @events do |date, events|
       = date
       - events.each do |event|
-        = event.name
+        = event.has_event(date)
+
     .event_add
       = link_to 'New Event', new_event_path
 

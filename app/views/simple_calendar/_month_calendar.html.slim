@@ -18,7 +18,7 @@
             = content_tag :td, class: calendar.td_classes_for(day) do
               - if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block)
                 - capture_haml do
-                  - block.call day, sorted_events.fetch(day, [])
+                  - block.call day.to_s[8..9], sorted_events.fetch(day, [])
               - else
-                - block.call day, sorted_events.fetch(day, [])
+                - block.call day.to_s[8..9], sorted_events.fetch(day, [])
 

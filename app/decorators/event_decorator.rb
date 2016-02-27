@@ -1,4 +1,4 @@
-class EventDecorator < ApplicationDecorator
+class EventDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
@@ -9,5 +9,11 @@ class EventDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
+  def has_event(date)
+    if Event.all.find_by(start_time: date.strftime('%F')) != nil
+      h.content_tag :p, 'Hello'
+    end
+  end
 
 end
