@@ -1,5 +1,10 @@
 class PagesController < ApplicationController
-  def home
-    @events = Event.all.decorate
+  expose(:page)
+
+  def index
+    @events = EventDecorator.new(Event.all)
+  end
+
+  def show
   end
 end

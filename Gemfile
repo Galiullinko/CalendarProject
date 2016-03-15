@@ -42,6 +42,7 @@ gem "rollbar"
 gem "seedbank"
 gem "stackprof"
 gem "simple_calendar", "~> 2.0"
+gem "quiet_assets"
 
 group :staging, :production do
   gem "newrelic_rpm"
@@ -80,14 +81,12 @@ group :development, :test do
   gem "rubocop-rspec", require: false
   gem "scss_lint", require: false
   gem "slim_lint", require: false
-  gem "simple_calendar", "~> 2.0"
 end
 
 group :development do
   gem "bullet"
   gem "foreman", require: false
   gem "letter_opener"
-  gem "quiet_assets"
   gem "rails-erd"
   gem "slim-rails"
   gem "spring"

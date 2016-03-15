@@ -11,7 +11,7 @@ class EventDecorator < Draper::Decorator
   #   end
 
   def has_event(date)
-    if Event.all.find_by(start_time: date.strftime('%F')) != nil
+    if Event.all.find_by(start_time: date) != nil
       h.content_tag :p, 'Hello'
     end
   end
