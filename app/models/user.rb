@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   validates :full_name, presence: true
+  validates :role, presence: true
 end

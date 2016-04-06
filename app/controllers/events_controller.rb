@@ -4,6 +4,10 @@ class EventsController < ApplicationController
   expose(:event, attributes: :event_params)
   expose(:events) { Event.page(params[:page]) }
 
+  def index
+    @events = Event.all
+  end
+
   def create
     flash[:notice] = 'Event was successfully created.' if event.save
     respond_with(event)

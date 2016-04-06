@@ -43,6 +43,7 @@ gem "seedbank"
 gem "stackprof"
 gem "simple_calendar", "~> 2.0"
 gem "quiet_assets"
+gem "decent_decoration"
 
 group :staging, :production do
   gem "newrelic_rpm"

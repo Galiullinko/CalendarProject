@@ -2,8 +2,7 @@
   .columns
     = month_calendar events: @events do |date, events|
       = date
-      - events.each do |event|
-        = event.has_event
+      /- binding.pry
     .event_add
       = link_to 'New Event', new_event_path
 

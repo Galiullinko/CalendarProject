@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   expose(:page)
 
   def index
-    @events = EventDecorator.new(Event.all)
+    @events = Event.all
   end
 
   def show
