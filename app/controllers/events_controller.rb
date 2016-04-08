@@ -2,7 +2,8 @@ class EventsController < ApplicationController
   respond_to :html
 
   expose(:event, attributes: :event_params)
-  expose(:events) { Event.page(params[:page]) }
+  #???
+  #expose(:events) { Event.page(params[:page]) }
 
   def index
     @events = Event.all
@@ -10,17 +11,17 @@ class EventsController < ApplicationController
 
   def create
     flash[:notice] = 'Event was successfully created.' if event.save
-    respond_with(event)
+
   end
 
   def update
     flash[:notice] = 'Event was successfully updated.' if event.save
-    respond_with(event)
+
   end
 
   def destroy
     event.destroy
-    respond_with(event)
+
   end
 
   private
