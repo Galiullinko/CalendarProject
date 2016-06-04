@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   validates :full_name, presence: true
-  has_many :events
-  has_many :subsciption
+  has_many :subscriptions
+  has_many :events, through: :subscriptions
 end

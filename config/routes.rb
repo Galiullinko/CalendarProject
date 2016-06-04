@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   root to: "events#index"
     get '/profile', to: 'users#show'
-    get '/my_events', to: 'events#my_events'
+    get '/subscribed_events', to: 'events#subscribed_events'
 end

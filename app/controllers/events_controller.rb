@@ -78,8 +78,8 @@ class EventsController < ApplicationController
     end
   end
 
-  def my_events
-    @events = current_user.events.order(start_time: :desc)
+  def subscribed_events
+    @events = current_user.events
   end
 
   private
