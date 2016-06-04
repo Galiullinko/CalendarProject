@@ -22,4 +22,7 @@
     '  or
     = link_to 'Delete', event_path(@event), method: 'delete'
     br
-    = link_to 'Subscribe', event_subscribe_path(@event)
+    - if !@policy.subscribed?
+      = link_to 'Subscribe', event_subscribe_path(@event)
+    - else
+      = link_to 'Unsubscribe', event_unsubscribe_path(@event)

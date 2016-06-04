@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  #before_action :subscription_policy, only: [:subscribe, :unsubscribe]
   respond_to :html
 
 
@@ -9,6 +10,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @policy = SubscriptionPolicy.new(current_user, @event)
   end
 
   def edit
@@ -19,8 +21,8 @@ class EventsController < ApplicationController
   end
 
   def subscribe
-    @event = Event.find_by(id: params[:event_id])
-    if SubscriptionPolicy.new(@event, current_user).subscribed?
+    @event = Event.find(params[:event_id])
+    if !subscription_policy(@event).subscribed?
       @subscription = subscribe_create(@event)
       respond_to do |v|
         v.html { redirect_to event_path(@event), notice: 'You was successfully subscribed on this event'}
@@ -28,6 +30,21 @@ class EventsController < ApplicationController
     else
       respond_to do |v|
         v.html { redirect_to event_path(@event), notice: 'You are already subscribed on this event' }
+      end
+    end
+  end
+
+  def unsubscribe
+    @event = Event.find(params[:event_id])
+    if !subscription_policy(@event).subscribed?
+      respond_to do |v|
+        v.html { redirect_to event_path(@event), notice: 'You are not subscribed on this event yet'}
+      end
+    else
+      @subscription = Subscription.find_by(user: current_user, event: @event)
+      @subscription.destroy
+      respond_to do |v|
+        v.html { redirect_to event_path(@event), notice: 'You were unsubscribed from this event'}
       end
     end
   end
@@ -76,5 +93,9 @@ class EventsController < ApplicationController
 
   def subscribe_create(event)
     @subscription = Subscription.create(user: current_user, event: event)
+  end
+
+  def subscription_policy(event)
+    @policy = SubscriptionPolicy.new(current_user, event)
   end
 end

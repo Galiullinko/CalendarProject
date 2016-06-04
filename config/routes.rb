@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     get 'subscribe'
+    get 'unsubscribe'
   end
 
   devise_for :users
