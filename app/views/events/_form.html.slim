@@ -1,11 +1,12 @@
-.scaffold-form
-  = simple_form_for(event) do |f|
-    .form-inputs
-      = f.input :name
-      = f.input :start_time
+/- binding.pry
+= simple_form_for(@event) do |f|
+  .form-inputs
+    = f.input :name
+    = f.input :start_time
+    = f.input :kind, :collection => ['global', 'private']
 
-    .form-actions
-      = f.button :submit
-      '  or
-      = link_to 'Back', :back
+  .form-actions
+    = f.button :submit
+    '  or
+    = link_to 'Back', :back
 

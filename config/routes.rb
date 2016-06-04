@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  resources :events
-  resources :pages
+  resources :events do
+    get 'subscribe'
+  end
+
   devise_for :users
-  resources :users, only: [:show]
+  resources :users, shallow: true do
+    resources :events
+  end
+
   root to: "events#index"
     get '/profile', to: 'users#show'
+    get '/my_events', to: 'events#my_events'
 end
